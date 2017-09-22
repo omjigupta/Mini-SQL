@@ -30,12 +30,33 @@ Success:
         |Command_Drop
         ;
 
+Command_I:
+           T_Insert T_Into T_Name Column_List T_Values T_OpBrace Comma_Expr T_ClBrace T_Semicolon
+           {
+                printf("\nmydbms>>Insert command:Parsed\n");
+           }
+
+Command_D:
+          T_Delete T_From T_Name Condition_Expr T_Semicolon
+          {
+               printf("\nmydbms>>Delete command:Parsed\n");
+
+          }
+
 Command_S:
            T_Select Atribute_List T_From T_Name Condition_Expr T_Semicolon
           {
              printf("\nmydbms>>Select command:Parsed\n");
 
           }
+
+Command_U:
+          T_Update T_Name T_Set Value_List Condition_Expr T_Semicolon
+          {
+           printf("\nmydbms>>Update command:Parsed\n");
+
+          }
+
 
 Command_C:
           T_Create T_Database T_Name
@@ -45,6 +66,18 @@ Command_C:
 
           }
 
+Command_Use:
+           T_Use T_Name T_Semicolon
+           {
+               printf("\nmydbms>>Use Command:Parsed\n");
+
+           }
+
+Command_Drop:
+            T_Drop T_Table T_Name T_Semicolon
+            {
+               printf("\nmydbms>>Drop Command:Parsed\n");
+            } 
 Attr_List:
           T_Name Var_Type Size Null_Constraint
           |T_Name Var_Type Size Null_Constraint T_Comma Attr_List
