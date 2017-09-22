@@ -1,6 +1,10 @@
 Letter [A-Za-z]
 Digit  [0-9]
 
+%{
+ #include "y.tab.h"
+%}
+
 %%
 [Cc][Rr][Ee][Aa][Tt][Ee]         return T_Create;
 
@@ -110,6 +114,10 @@ Digit  [0-9]
 {Digit}*[.]{Digit}+            return V_Double;
 %%
 
+int yywrap(void)
+{
+ return 1;
+}
 
 
 
